@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Directories</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+    <ul>
+        <% directories.forEach(function(directory) { %>
+            <li><a href="/directories/<%= directory %>">
+                    <%= directory %>
+                </a></li>
+            <% }); %>
+    </ul>
+</body>
+
+</html>
