@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    margin: 1em;
+    width: 20em;
+    height: 15em;
+    background-color: cyan;
+    border-radius: 0.5em;
+    text-align: center;
+
+}
+
+.item:hover {
+    background-color: blue;
+    box-shadow: 0 0 0.5em #000;
+    color: #fff;
+}

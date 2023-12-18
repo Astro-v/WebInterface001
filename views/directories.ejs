@@ -3,17 +3,19 @@
 
 <head>
     <title>Directories</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="/directories_styles.css">
 </head>
 
 <body>
-    <ul>
+    <div class="container">
         <% directories.forEach(function(directory) { %>
-            <li><a href="/directories/<%= directory %>">
+            <a href="/directories/<%= directory %>">
+                <div class="item">
                     <%= directory %>
-                </a></li>
+                </div>
+            </a>
             <% }); %>
-    </ul>
+    </div>
 </body>
 
 </html>

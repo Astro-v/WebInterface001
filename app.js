@@ -50,26 +50,14 @@ const fs = require('fs');
 const path = require('path');
 
 // Route pour afficher les répertoires
-app.get('/directories', (req, res) => {
-    fs.readdir('./data', (err, directories) => {
+app.get('/directories/:dir', (req, res) => {
+    const dirPath = path.join('./data', req.params.dir);
+    fs.readdir(dirPath, (err, directories) => {
         if (err) {
             console.error("Could not list the directory.", err);
             res.status(500).send('An error occurred');
         } else {
             res.render('directories', { directories });
-        }
-    });
-});
-
-// Route pour afficher les fichiers d'un répertoire spécifique
-app.get('/directories/:dir', (req, res) => {
-    const dirPath = path.join('./data', req.params.dir);
-    fs.readdir(dirPath, (err, files) => {
-        if (err) {
-            console.error("Could not list the directory.", err);
-            res.status(500).send('An error occurred');
-        } else {
-            res.render('files', { files });
         }
     });
 });
