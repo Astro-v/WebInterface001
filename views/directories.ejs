@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <% directories.forEach(function(directory) { %>
-            <a href="/directories/<%= directory %>">
+            <a href="/directories<%= curent_path %>/<%= directory %>">
                 <div class="item">
                     <%= directory %>
                 </div>
