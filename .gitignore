@@ -1,3 +1,7 @@
 *.json
 node_modules
 data/*
+*.gif
+*.jpg
+*.png
+*.pdf
