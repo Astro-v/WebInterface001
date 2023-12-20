@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 const app = express();
 const port = 3000;
@@ -18,12 +19,25 @@ app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send('Hello world');
-});
 
-app.get('/root', (req, res) => {
-    res.send('Login successful!');
+app.use(session({
+    secret: 'your secret key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Note: In production, set this to true and ensure you use HTTPS
+}));
+
+// Middleware to check if the user is authenticated
+function checkAuthenticated(req, res, next) {
+    if (req.session.loggedin) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+app.get('/', checkAuthenticated, (req, res) => {
+    res.redirect('/directories');
 });
 
 app.get('/login', (req, res) => {
@@ -39,7 +53,8 @@ app.post('/login', (req, res) => {
     // Check if the login is valid
     if (username === 'admin' && password === 'password') {
         // If it is, redirect to the root page
-        res.redirect('/root');
+        req.session.loggedin = true;
+        res.redirect('/directories');
     } else {
         // If it isn't, redirect back to the login page
         res.redirect('/login');
@@ -50,9 +65,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Route pour afficher les répertoires
-app.get('/directories*', (req, res) => {
+app.get('/directories*', checkAuthenticated, (req, res) => {
     const dirs = req.params[0].split('/');
-    console.log(req.params[0]);
     const dirPath = path.join('./data', ...dirs);
     // Si dirPath est un dossier
     if (fs.lstatSync(dirPath).isDirectory()) {
