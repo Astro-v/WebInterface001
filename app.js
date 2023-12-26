@@ -67,7 +67,7 @@ const path = require('path');
 // Route pour afficher les répertoires
 app.get('/directories*', checkAuthenticated, (req, res) => {
     const dirs = req.params[0].split('/');
-    const dirPath = path.join('./data', ...dirs);
+    const dirPath = path.join('./public/data', ...dirs);
     // Si dirPath est un dossier
     if (fs.lstatSync(dirPath).isDirectory()) {
         fs.readdir(dirPath, (err, directories) => {
