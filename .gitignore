@@ -1,8 +1,4 @@
 *.json
-node_modules
-*.gif
-*.jpg
-*.png
-*.pdf
 *.log
-public/data/*
+public/data
+node_modules

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Site</title>
+    <link rel="stylesheet" type="text/css" href="/login_styles.css">
+</head>
+
+<body>
+    <form action="/login" method="post">
+        <div class="login">
+            <% if (wrong_login) { %>
+                <div class="wrong_login element">
+                    <p>Identifiant ou mot de passe incorrect</p>
+                </div>
+                <% } %>
+                    <div class="wrapper element">
+                        <input type="text" name="username" class="input" required="required"
+                            placeholder="Nom d'utilisateur" />
+                    </div>
+                    <div class="wrapper element">
+                        <input type="password" name="password" class="input" required="required"
+                            placeholder="Mot de passe" />
+                    </div>
+                    <div class="connect element">
+                        <button type="submit" class="connect_button">CONNEXION</button>
+                    </div>
+        </div>
+    </form>
+</body>
+
+</html>

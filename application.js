@@ -5,6 +5,8 @@ const session = require('express-session');
 const app = express();
 const port = 3000;
 
+const checkCredentials = require('./authentification');
+
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -17,9 +19,10 @@ app.use(express.static('public'));
 // Configure express to use EJS
 app.set('view engine', 'ejs');
 
+// Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));
 
-
+// Parse JSON bodies (as sent by API clients)
 app.use(session({
     secret: 'your secret key',
     resave: false,
@@ -29,6 +32,7 @@ app.use(session({
 
 // Middleware to check if the user is authenticated
 function checkAuthenticated(req, res, next) {
+    console.log(req.sessionID);
     if (req.session.loggedin) {
         next();
     } else {
@@ -41,24 +45,28 @@ app.get('/', checkAuthenticated, (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    console.log('This is a message for the logs.');
-    res.render('index');
+    res.render('login', { wrong_login: false });
 });
 
 app.post('/login', (req, res) => {
     const username = req.body.username;
-    console.log(username);
     const password = req.body.password;
-    console.log(password);
-    // Check if the login is valid
-    if (username === 'admin' && password === 'password') {
-        // If it is, redirect to the root page
-        req.session.loggedin = true;
-        res.redirect('/directories');
-    } else {
-        // If it isn't, redirect back to the login page
-        res.redirect('/login');
-    }
+
+    checkCredentials(username, password).then((isMatch) => {
+        if (isMatch) {
+            req.session.loggedin = true;
+            req.session.username = username;
+            console.log('User ' + username + ' logged in');
+            res.redirect('/directories');
+        } else {
+            req.session.loggedin = false;
+            console.log('User ' + username + ' failed to log in');
+            res.render('login', { wrong_login: true });
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.render('login', { wrong_login: true, error: 'An error occurred' });
+    });
 });
 
 const fs = require('fs');

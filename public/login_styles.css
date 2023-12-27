@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: #fff;
+    font-family: "Poppins", sans-serif;
+
+    background-image: url('images/login_wallpaper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.element {
+    margin: 0.5rem 0;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.input {
+    padding: 0.6rem 1.2rem;
+    color: #444;
+    font-size: 1.5rem;
+    border: none;
+    background-color: #d3d3d3;
+    border-radius: 0.5rem;
+}
+
+.connect {
+    display: flex;
+    height: 3rem;
+}
+
+.connect_button {
+    background-color: #f07883;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.connect_button:hover {
+    cursor: pointer;
+    background-color: #f7354f;
+}
+
+.wrong_login {
+    color: white;
+    font-weight: bold;
+    background-color: red;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    height: 3rem;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
