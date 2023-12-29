@@ -23,15 +23,10 @@ npm install express-session
 # node application.js
 
 # sql commands
-# connect to mysql
-# mysql -u root -p
-# display databases
-# show databases;
-# create database
-# create database login_database;
-# use database
-# use login_database;
-# read database
-# select * from login_table;
-# delete element from database
-# delete from login_table where username='test';
+# launch sql : sudo service mysql start
+# connect to mysql : mysql -u root -p
+# display databases : show databases;
+# create database : create database login_database;
+# use database : use login_database;
+# read database : select * from login_table;
+# delete element from database : delete from login_table where username='test';

@@ -1,3 +1,15 @@
+body {
+    background-color: #F2F2F2;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+}
+
+main {
+    margin-top: 3rem;
+    margin-left: 4rem;
+
+}
+
 header {
     position: fixed;
     top: 0;
@@ -6,37 +18,13 @@ header {
     height: 3rem;
     background-color: #61292C;
     color: #fff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 2px 5px rgba(204, 200, 200, 0.4);
     z-index: 2;
 }
 
-nav {
-    position: fixed;
-    height: 100%;
-    width: 4rem;
-    transition: width 0.5s;
-    left: 0;
-    top: 3rem;
-    background-color: #DEDEDE;
-    border: #C3C3C3 1px solid;
-    z-index: 1;
-}
 
-.icon {
-    text-align: center;
-    width: 4rem;
-}
 
-nav:hover {
-    width: 15rem;
-    transition: width 0.5s;
-}
 
-body {
-    margin-top: 3rem;
-    margin-left: 4rem;
-    background-color: #F2F2F2;
-}
 
 .container {
     display: flex;
@@ -45,17 +33,77 @@ body {
 }
 
 .item {
-    margin: 1em;
-    width: 20em;
-    height: 15em;
-    background-color: cyan;
-    border-radius: 0.5em;
+    margin: 1rem;
+    width: 12rem;
+    height: 16rem;
+    border-radius: 0.5rem;
     text-align: center;
-
+    background-image: url(/images/icon/folder.svg);
+    background-size: 12rem;
+    background-repeat: no-repeat;
+    background-color: #DEDEDE;
 }
 
 .item:hover {
-    background-color: blue;
-    box-shadow: 0 0 0.5em #000;
-    color: #fff;
+    box-shadow: 0 0 0.3rem #999;
+    background-image: url(/images/icon/open_folder.svg);
+}
+
+.folder-item {
+    width: 12rem;
+    height: 12rem;
+}
+
+nav {
+    position: fixed;
+    height: 100%;
+    width: 4rem;
+    transition: width 0.2s;
+    left: 0;
+    top: 3rem;
+    background-color: #DEDEDE;
+    border: #C3C3C3 1px solid;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    text-align: center;
+    width: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: gray;
+}
+
+nav:hover {
+    width: 15rem;
+    transition: width 0.2s;
+}
+
+.nav_description {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-grow: 1;
+    flex-direction: row;
+    width: 0;
+}
+
+.nav_content {
+    display: flex;
+    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.nav_line {
+    border: none;
+    height: 0.01rem;
+    background: #888;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }

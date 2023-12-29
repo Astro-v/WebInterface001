@@ -83,7 +83,7 @@ app.get('/directories*', checkAuthenticated, (req, res) => {
                 console.error("Could not list the directory.", err);
                 res.status(500).send('An error occurred');
             } else {
-                res.render('directories', { directories, curent_path: req.params[0] });
+                res.render('directories', { directories, curent_path: req.params[0], username: req.session.username });
             }
         });
     } else {
